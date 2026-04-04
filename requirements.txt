@@ -15,7 +15,7 @@ asyncpg==0.29.0
 alembic==1.13.3
 
 # Config / Validation
-pydantic==2.9.2
+pydantic[email]==2.9.2
 pydantic-settings==2.5.2
 
 # Authentication

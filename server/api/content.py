@@ -76,7 +76,7 @@ async def generate_content(req: GenerateRequest):
                 title=result.get("title"),
                 body=result["body"],
                 raw_body=result.get("raw_body"),
-                metadata={
+                extra_metadata={
                     "product": req.product_context,
                     "topic": req.topic,
                     "tone": req.tone,
@@ -135,7 +135,7 @@ async def list_drafts(status: Optional[str] = None, limit: int = 50):
                 "body": d.body,
                 "raw_body": d.raw_body,
                 "status": d.status,
-                "metadata": d.metadata,
+                "metadata": d.extra_metadata,
                 "created_at": d.created_at.isoformat() if d.created_at else None,
             }
             for d in drafts
@@ -162,7 +162,7 @@ async def get_draft(draft_id: str):
         "body": draft.body,
         "raw_body": draft.raw_body,
         "status": draft.status,
-        "metadata": draft.metadata,
+        "metadata": draft.extra_metadata,
         "created_at": draft.created_at.isoformat() if draft.created_at else None,
     }
 

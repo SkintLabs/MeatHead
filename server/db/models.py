@@ -501,8 +501,8 @@ class ContentDraft(Base):
         sa.Text, nullable=True,
         comment="Original AI output before humanizer",
     )
-    metadata: Mapped[Optional[dict]] = mapped_column(
-        JSONB, nullable=True,
+    extra_metadata: Mapped[Optional[dict]] = mapped_column(
+        "metadata", JSONB, nullable=True,
         comment="Platform-specific context: subreddit, audience, product, etc.",
     )
     status: Mapped[str] = mapped_column(

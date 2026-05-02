@@ -73,6 +73,34 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         logger.error(f"Database initialization failed: {e}", exc_info=True)
 
+    # --- STARTUP: Seed internal user ---
+    # Single-user MVP: every draft / lead / campaign is owned by one fixed
+    # user UUID. The content_drafts / leads / campaigns tables have a foreign
+    # key on users.id, so this row must exist before any insert can succeed.
+    try:
+        import uuid as _uuid
+        from sqlalchemy import select
+        from server.db.engine import get_db
+        from server.db.models import User
+
+        internal_id = _uuid.UUID("00000000-0000-0000-0000-000000000001")
+        async with get_db() as db:
+            result = await db.execute(select(User).where(User.id == internal_id))
+            if result.scalar_one_or_none() is None:
+                db.add(User(
+                    id=internal_id,
+                    email="internal@skintlabs.ai",
+                    hashed_password="!disabled",
+                    full_name="MeatHead Internal",
+                    plan="business",
+                    billing_status="active",
+                    monthly_lead_limit=999999,
+                    leads_enrolled_this_month=0,
+                ))
+                logger.info("Seeded internal user row.")
+    except Exception as e:
+        logger.error(f"Internal user seed failed: {e}", exc_info=True)
+
     logger.info(
         f"GiLLBoT API started | env={settings.environment} | "
         f"groq={'on' if settings.groq_configured else 'off'} | "

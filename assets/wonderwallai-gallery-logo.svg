@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+
+  <!-- Background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0c0b0a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1917;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bgGradient)"/>
+
+  <!-- Center circle background for logo -->
+  <circle cx="600" cy="320" r="200" fill="none" stroke="#e76f51" stroke-width="2" opacity="0.3"/>
+  <circle cx="600" cy="320" r="190" fill="none" stroke="#d4a040" stroke-width="1" opacity="0.2"/>
+
+  <!-- Shield icon (simplified) -->
+  <path d="M 600 120 L 700 180 L 700 280 Q 700 360 600 420 Q 500 360 500 280 L 500 180 Z"
+        fill="none" stroke="#e76f51" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- Firewall lines inside shield -->
+  <line x1="560" y1="220" x2="640" y2="220" stroke="#d4a040" stroke-width="2"/>
+  <line x1="560" y1="260" x2="640" y2="260" stroke="#d4a040" stroke-width="2"/>
+  <line x1="560" y1="300" x2="640" y2="300" stroke="#d4a040" stroke-width="2"/>
+  <line x1="560" y1="340" x2="640" y2="340" stroke="#d4a040" stroke-width="2"/>
+
+  <!-- Logo text -->
+  <text x="600" y="550" font-family="serif" font-size="56" font-weight="900" fill="#e76f51" text-anchor="middle">
+    WonderwallAi
+  </text>
+
+  <!-- Tagline -->
+  <text x="600" y="640" font-family="sans-serif" font-size="28" fill="#ede8e0" text-anchor="middle" font-weight="600">
+    Your LLM's last line of defence
+  </text>
+  <text x="600" y="680" font-family="sans-serif" font-size="28" fill="#ede8e0" text-anchor="middle" font-weight="600">
+    against the internet
+  </text>
+
+  <!-- Accent line -->
+  <line x1="250" y1="750" x2="950" y2="750" stroke="#d4a040" stroke-width="2" opacity="0.6"/>
+</svg>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @font-face { font-family: 'Kenjaku'; src: url('../wonderwallai-site/assets/fonts/Kenjaku DEMO.otf') format('opentype'); }
+  @font-face { font-family: 'NeonFuture'; src: url('../wonderwallai-site/assets/NeonFuture.ttf') format('truetype'); }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ---- SWITCH SLIDES HERE: set body class to slide-1, slide-2, or slide-3 ---- */
+  body {
+    width: 1270px;
+    height: 952px;
+    background: #0c0b0a;
+    font-family: 'Inter', sans-serif;
+    color: #ede8e0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ============================================================
+     SLIDE 1 — Hero / Brand
+  ============================================================ */
+  .slide-1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px;
+    text-align: center;
+    background: radial-gradient(ellipse 900px 600px at 50% 40%, rgba(38,70,83,0.18) 0%, transparent 70%), #0c0b0a;
+    position: relative;
+  }
+  .slide-1::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.02) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.02) 40px);
+    pointer-events: none;
+  }
+  .s1-logo-img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 40px rgba(231,111,81,0.5));
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+  .s1-wordmark {
+    font-family: 'Kenjaku', sans-serif;
+    font-size: 5.5rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #e76f51 0%, #f4a261 50%, #e9c46a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
+  }
+  .s1-wordmark .a-letter {
+    -webkit-text-fill-color: #2d5363;
+  }
+  .s1-wordmark .i-letter {
+    -webkit-text-fill-color: #e9c46a;
+  }
+  .s1-tagline {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #b0a898;
+    max-width: 700px;
+    line-height: 1.5;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .s1-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(38,70,83,0.15);
+    border: 1px solid rgba(38,70,83,0.4);
+    color: #4a9ab0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 10px 22px;
+    border-radius: 100px;
+    position: relative;
+    z-index: 1;
+  }
+  .s1-pill::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+  }
+
+  /* ============================================================
+     SLIDE 2 — Code / How it works
+  ============================================================ */
+  .slide-2 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 70px 80px;
+    background: #0c0b0a;
+  }
+  .s2-header {
+    margin-bottom: 40px;
+  }
+  .s2-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #e76f51;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .s2-title {
+    font-family: 'Kenjaku', sans-serif;
+    font-size: 3.2rem;
+    letter-spacing: 0.04em;
+    color: #ede8e0;
+    line-height: 1.1;
+  }
+  .s2-title span { color: #2d5363; }
+  .s2-subtitle {
+    font-size: 1.1rem;
+    color: #7a7268;
+    margin-top: 10px;
+  }
+  .s2-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    flex: 1;
+  }
+  .code-block {
+    background: #0f0e0d;
+    border: 1px solid #2a2520;
+    border-radius: 14px;
+    padding: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+  .code-block .cb-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #7a7268;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1e1c18;
+  }
+  .kw { color: #569cd6; }
+  .fn { color: #dcdcaa; }
+  .st { color: #ce9178; }
+  .cm { color: #6a9955; }
+  .nu { color: #b5cea8; }
+  .tx { color: #d4d4d4; }
+  .features-block {
+    background: #0f0e0d;
+    border: 1px solid #2a2520;
+    border-radius: 14px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .features-block .cb-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #7a7268;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #1e1c18;
+  }
+  .feature-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .feature-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(38,70,83,0.2);
+    border: 1px solid rgba(38,70,83,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .feature-text strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ede8e0;
+    margin-bottom: 2px;
+  }
+  .feature-text span {
+    font-size: 0.8rem;
+    color: #7a7268;
+  }
+
+  /* ============================================================
+     SLIDE 3 — Stats / Why WonderwallAi
+  ============================================================ */
+  .slide-3 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 70px 80px;
+    background: #0c0b0a;
+  }
+  .s3-header {
+    margin-bottom: 56px;
+  }
+  .s3-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #e76f51;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .s3-title {
+    font-family: 'Kenjaku', sans-serif;
+    font-size: 3.2rem;
+    letter-spacing: 0.04em;
+    color: #ede8e0;
+    line-height: 1.1;
+  }
+  .s3-title span { color: #2d5363; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    background: #0f0e0d;
+    border: 1px solid #2a2520;
+    border-radius: 14px;
+    padding: 36px 32px;
+  }
+  .stat-number {
+    font-family: 'Kenjaku', sans-serif;
+    font-size: 3.5rem;
+    letter-spacing: 0.04em;
+    background: linear-gradient(135deg, #e76f51 0%, #f4a261 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .stat-label {
+    font-size: 0.9rem;
+    color: #7a7268;
+    line-height: 1.4;
+  }
+  .bottom-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    flex: 1;
+  }
+  .badge-card {
+    background: #0f0e0d;
+    border: 1px solid #2a2520;
+    border-radius: 14px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .badge-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .badge-text strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ede8e0;
+    margin-bottom: 4px;
+  }
+  .badge-text span {
+    font-size: 0.82rem;
+    color: #7a7268;
+  }
+
+  /* ---- BRANDING FOOTER (all slides) ---- */
+  .brand-footer {
+    position: absolute;
+    bottom: 32px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.5;
+  }
+  .brand-footer span {
+    font-family: 'Kenjaku', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    color: #ede8e0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SLIDE 1 — uncomment one <div class="slide-N"> at a time,
+     screenshot at 1270×952, save as wonderwallai-gallery-N.png
+============================================================ -->
+
+<div class="slide-1" style="position:relative;">
+  <img class="s1-logo-img" src="../wonderwallai-site/assets/wonderwallai-logo.png" alt="">
+  <div class="s1-wordmark">Wonderwall<span class="a-letter">A</span><span class="i-letter">i</span></div>
+  <div class="s1-tagline">AI firewall for LLM applications. Block prompt injection, PII leaks, and off-topic abuse — locally, in under 2ms.</div>
+  <div class="s1-pill">Open source &nbsp;·&nbsp; MIT licensed &nbsp;·&nbsp; Zero API calls</div>
+  <div class="brand-footer">
+    <span>wonderwallai.skintlabs.ai</span>
+  </div>
+</div>
+
+<!--
+<div class="slide-2" style="position:relative;">
+  <div class="s2-header">
+    <div class="s2-label">How it works</div>
+    <div class="s2-title">Three lines to protect<br>your <span>LLM</span></div>
+    <div class="s2-subtitle">Drop it in before your LLM call. That's it.</div>
+  </div>
+  <div class="s2-body">
+    <div class="code-block">
+      <div class="cb-title">Python · pip install wonderwallai</div>
+      <span class="kw">from</span> <span class="fn">wonderwallai</span> <span class="kw">import</span> <span class="fn">Wonderwall</span><br><br>
+      <span class="cm"># initialize once</span><br>
+      <span class="tx">fw =</span> <span class="fn">Wonderwall</span>(<br>
+      &nbsp;&nbsp;<span class="tx">topics=</span><span class="st">"ecommerce"</span><span class="tx">,</span><br>
+      &nbsp;&nbsp;<span class="tx">leak_detect=</span><span class="kw">True</span><br>
+      <span class="tx">)</span><br><br>
+      <span class="cm"># scan every user message</span><br>
+      <span class="tx">result = fw.</span><span class="fn">scan</span><span class="tx">(user_input)</span><br>
+      <span class="kw">if</span> <span class="tx">result.blocked:</span><br>
+      &nbsp;&nbsp;<span class="fn">reject</span><span class="tx">(result.reason)</span><br>
+      <span class="kw">else</span><span class="tx">:</span><br>
+      &nbsp;&nbsp;<span class="tx">response = llm.</span><span class="fn">generate</span><span class="tx">(user_input)</span>
+    </div>
+    <div class="features-block">
+      <div class="cb-title">What it blocks</div>
+      <div class="feature-row">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-text">
+          <strong>Prompt Injection</strong>
+          <span>Detects jailbreaks, role overrides, and instruction smuggling</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🔑</div>
+        <div class="feature-text">
+          <strong>API Key Leaks</strong>
+          <span>10+ key patterns — OpenAI, Stripe, AWS, and more</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-text">
+          <strong>Off-Topic Abuse</strong>
+          <span>Semantic topic enforcement — keeps users on-task</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-text">
+          <strong>PII & Data Leaks</strong>
+          <span>Outbound scanning stops sensitive data leaving your LLM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="brand-footer">
+    <span>wonderwallai.skintlabs.ai</span>
+  </div>
+</div>
+-->
+
+<!--
+<div class="slide-3" style="position:relative;">
+  <div class="s3-header">
+    <div class="s3-label">Why WonderwallAi</div>
+    <div class="s3-title">Protect your <span>LLM</span>.<br>Ship with confidence.</div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">&lt;2ms</div>
+      <div class="stat-label">Fast path latency — 90% of threats blocked locally, no API call</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">API key patterns detected — OpenAI, Stripe, AWS, and more</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">MIT</div>
+      <div class="stat-label">Fully open source — self-host, extend, or use the hosted API</div>
+    </div>
+  </div>
+  <div class="bottom-row">
+    <div class="badge-card">
+      <div class="badge-icon">🔌</div>
+      <div class="badge-text">
+        <strong>LLM-agnostic</strong>
+        <span>Works with OpenAI, Anthropic, Groq, Ollama — any provider</span>
+      </div>
+    </div>
+    <div class="badge-card">
+      <div class="badge-icon">🚀</div>
+      <div class="badge-text">
+        <strong>Zero cold-start overhead</strong>
+        <span>Runs in-process — no external API calls on the fast path</span>
+      </div>
+    </div>
+  </div>
+  <div class="brand-footer">
+    <span>wonderwallai.skintlabs.ai</span>
+  </div>
+</div>
+-->
+
+</body>
+</html>

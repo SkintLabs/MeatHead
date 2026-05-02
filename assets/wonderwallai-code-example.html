@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; }
+  body { 
+    background: linear-gradient(135deg, #0c0b0a 0%, #1a1917 100%);
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    height: 100vh; 
+    font-family: 'Monaco', 'Menlo', monospace;
+  }
+  .container {
+    background: #0f0e0d;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 600px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  }
+  .title {
+    color: #e76f51;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .subtitle {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  code {
+    display: block;
+    color: #d4d4d4;
+    font-size: 14px;
+    line-height: 1.8;
+    white-space: pre;
+  }
+  .keyword { color: #569cd6; }
+  .string { color: #ce9178; }
+  .function { color: #dcdcaa; }
+  .comment { color: #6a9955; }
+  .number { color: #b5cea8; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Three Lines to Protect</div>
+    <div class="subtitle">Stop prompt injection before it reaches your LLM</div>
+    <code><span class="keyword">from</span> <span class="function">wonderwallai</span> <span class="keyword">import</span> <span class="function">Firewall</span>
+
+<span class="comment"># Initialize once in your app</span>
+fw = <span class="function">Firewall</span>(
+    topics=<span class="string">"ecommerce"</span>,
+    leak_detect=<span class="keyword">True</span>
+)
+
+<span class="comment"># Scan every user input</span>
+result = fw.<span class="function">scan</span>(user_message)
+<span class="keyword">if</span> result.blocked:
+    <span class="function">reject</span>(result.reason)
+<span class="keyword">else</span>:
+    response = llm.<span class="function">generate</span>(user_message)</code>
+  </div>
+</body>
+</html>

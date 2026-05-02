@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skint Labs — Complete Font Preview</title>
+  <style>
+    @font-face { font-family: 'CalcioItaliano'; src: url('calcio-italiano/Calcio-Italiano-Free-Personal-Use.ttf'); }
+    @font-face { font-family: 'CoralPixels'; src: url('coral-pixels/CoralPixels-Regular.ttf'); }
+    @font-face { font-family: 'CreateFuture'; src: url('create-future/Create Future.otf'); }
+    @font-face { font-family: 'DeLatto'; src: url('de-latto/DeLatto.ttf'); }
+    @font-face { font-family: 'FluxDemo'; src: url('fluxdemo/FluxDemo.ttf'); }
+    @font-face { font-family: 'GoldenGirdle'; src: url('golden-girdle/Golden Girdle.otf'); }
+    @font-face { font-family: 'DotriceRegular'; src: url('hdad-dotrice-1.001/Dotrice-Regular.otf'); }
+    @font-face { font-family: 'DotriceBold'; src: url('hdad-dotrice-1.001/Dotrice-Bold.otf'); }
+    @font-face { font-family: 'DotriceCondensed'; src: url('hdad-dotrice-1.001/Dotrice-Condensed.otf'); }
+    @font-face { font-family: 'DotriceBoldCondensed'; src: url('hdad-dotrice-1.001/Dotrice-Bold-Condensed.otf'); }
+    @font-face { font-family: 'DotriceExpanded'; src: url('hdad-dotrice-1.001/Dotrice-Expanded.otf'); }
+    @font-face { font-family: 'DotriceBoldExpanded'; src: url('hdad-dotrice-1.001/Dotrice-Bold-Expanded.otf'); }
+    @font-face { font-family: 'HoldMoney'; src: url('hold-money/HoldMoney-Regular.ttf'); }
+    @font-face { font-family: 'HustlersDemo'; src: url('hustlers-demo/HustlersDEmo-Regular.otf'); }
+    @font-face { font-family: 'Instink'; src: url('instink/Instink D.ttf'); }
+    @font-face { font-family: 'Kamikaze'; src: url('kamikaze/Kamikaze.ttf'); }
+    @font-face { font-family: 'KamikazeItalic'; src: url('kamikaze/Kamikaze-Italic.ttf'); }
+    @font-face { font-family: 'Kamikaze3D'; src: url('kamikaze/Kamikaze3DGradient.ttf'); }
+    @font-face { font-family: 'KarmaticArcade'; src: url('karmatic-arcade/ka1.ttf'); }
+    @font-face { font-family: 'KenjakuDemo'; src: url('kenjaku-demo/Kenjaku DEMO.otf'); }
+    @font-face { font-family: 'LemonSmash'; src: url('lemon-smash-demo/LemonSmash-Regular.otf'); }
+    @font-face { font-family: 'MarginDemo'; src: url('margin-demo/Margin DEMO.otf'); }
+    @font-face { font-family: 'Masterday'; src: url('masterday/Masterday.otf'); }
+    @font-face { font-family: 'MightySouly'; src: url('mighty-souly/Mighty Souly.otf'); }
+    @font-face { font-family: 'Monoton'; src: url('monoton/Monoton-Regular.ttf'); }
+    @font-face { font-family: 'Neon'; src: url('neon/NEON____.TTF'); }
+    @font-face { font-family: 'NeonFuture'; src: url('neon-future/Neon Future.ttf'); }
+    @font-face { font-family: 'NeonSpark'; src: url('neon-spark/Neon Spark.otf'); }
+    @font-face { font-family: 'Neonrift'; src: url('neonrift/Neonrift.ttf'); }
+    @font-face { font-family: 'Oxygene1'; src: url('oxygene-1/OXYGENE1.TTF'); }
+    @font-face { font-family: 'PolyphiaDemo'; src: url('polyphia-demo/Polyphia DEMO.ttf'); }
+    @font-face { font-family: 'Rambors'; src: url('rambors/Rambors.ttf'); }
+    @font-face { font-family: 'Remarcle'; src: url('remarcle/Remarcle.ttf'); }
+    @font-face { font-family: 'SprintRunner'; src: url('sprint-runner-demo/SprintRunnerDemoRegular.ttf'); }
+    @font-face { font-family: 'StanderDemo'; src: url('stander-demo/Stander DEMO.otf'); }
+    @font-face { font-family: 'TrustParade'; src: url('trust-parade/TrustParade-Regular.ttf'); }
+    @font-face { font-family: 'UnpopularMontage'; src: url('unpopular-montage/Unpopular Montage.otf'); }
+    @font-face { font-family: 'WhiteRabbit'; src: url('white-rabbit/whitrabt.ttf'); }
+    @font-face { font-family: 'Astroz'; src: url('astroz/Astroz Trial.ttf'); }
+    @font-face { font-family: 'AwesomeChristmas'; src: url('awesome-christmas-demo/Awesome Christmas Demo.otf'); }
+    @font-face { font-family: 'BecomeCritical'; src: url('become-critical-demo/BECOME CRITICAL DEMO.ttf'); }
+    @font-face { font-family: 'BoogieNights'; src: url('boogie-nights-nf/BoogieNightsNFShadow.ttf'); }
+    @font-face { font-family: 'Brafesuit'; src: url('brafesuit/Brafesuit.ttf'); }
+    @font-face { font-family: 'DeathStar'; src: url('death-star/Death Star.otf'); }
+    @font-face { font-family: 'Decofun'; src: url('decofun/Decofun-Regular.ttf'); }
+    @font-face { font-family: 'Deventer'; src: url('deventer/Deventer - PERSONAL USE.otf'); }
+    @font-face { font-family: 'LiquidGalaxy'; src: url('liquid-galaxy/Liquidgalaxy-Regular.ttf'); }
+    @font-face { font-family: 'MeraMero'; src: url('mera-mero/Mera Mero.otf'); }
+    @font-face { font-family: 'MorvifunExpanded'; src: url('morvifun-expanded/MorvifunExpanded-Expanded.ttf'); }
+    @font-face { font-family: 'RoturaVintage'; src: url('rotura-vintage-demo/RoturaVintageDemo-Regular.otf'); }
+    @font-face { font-family: 'TakeAShot'; src: url('take-a-shot-personal-use/TAKE A SHOT PERSONAL USE.ttf'); }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0e0e0e;
+      color: #f0f0f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 40px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    header h1 {
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .font-block {
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+
+    .font-header {
+      background: #1e1e1e;
+      padding: 14px 24px;
+      border-bottom: 1px solid #2a2a2a;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .font-name {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .font-file {
+      font-size: 10px;
+      color: #555;
+      font-family: monospace;
+    }
+
+    .variants-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .variant-cell {
+      padding: 28px 20px;
+      border-right: 1px solid #222;
+      border-bottom: 1px solid #222;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .variant-cell:nth-child(3n) { border-right: none; }
+    .variant-cell:nth-last-child(1),
+    .variant-cell:nth-last-child(2),
+    .variant-cell:nth-last-child(3) { border-bottom: none; }
+
+    .variant-label {
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .variant-text {
+      font-size: 36px;
+      line-height: 1.1;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .variant-text.sm { font-size: 28px; }
+    .variant-text.xs { font-size: 22px; }
+
+    @media (max-width: 640px) {
+      .variants-grid { grid-template-columns: repeat(2, 1fr); }
+      .variant-cell:nth-child(3n) { border-right: 1px solid #222; }
+      .variant-cell:nth-child(2n) { border-right: none; }
+      .variant-text { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Skint Labs — Complete Font Preview</h1>
+  <p>All 48 fonts showing your company name in multiple variations</p>
+</header>
+
+<!-- ── ORIGINAL FONTS ── -->
+
+<!-- CALCIO ITALIANO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Calcio Italiano</span>
+    <span class="font-file">calcio-italiano/Calcio-Italiano-Free-Personal-Use.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'CalcioItaliano'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'CalcioItaliano'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'CalcioItaliano'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'CalcioItaliano'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'CalcioItaliano'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'CalcioItaliano'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- CORAL PIXELS -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Coral Pixels</span>
+    <span class="font-file">coral-pixels/CoralPixels-Regular.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'CoralPixels'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'CoralPixels'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'CoralPixels'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'CoralPixels'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'CoralPixels'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'CoralPixels'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- CREATE FUTURE -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Create Future</span>
+    <span class="font-file">create-future/Create Future.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'CreateFuture'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'CreateFuture'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'CreateFuture'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'CreateFuture'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'CreateFuture'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'CreateFuture'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- DE LATTO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">De Latto</span>
+    <span class="font-file">de-latto/DeLatto.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'DeLatto'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'DeLatto'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'DeLatto'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'DeLatto'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'DeLatto'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'DeLatto'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- FLUX DEMO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Flux Demo</span>
+    <span class="font-file">fluxdemo/FluxDemo.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'FluxDemo'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'FluxDemo'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'FluxDemo'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'FluxDemo'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'FluxDemo'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'FluxDemo'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- GOLDEN GIRDLE -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Golden Girdle</span>
+    <span class="font-file">golden-girdle/Golden Girdle.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'GoldenGirdle'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'GoldenGirdle'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'GoldenGirdle'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'GoldenGirdle'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'GoldenGirdle'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'GoldenGirdle'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- DOTRICE REGULAR -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Dotrice — Regular</span>
+    <span class="font-file">hdad-dotrice-1.001/Dotrice-Regular.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'DotriceRegular'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'DotriceRegular'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'DotriceRegular'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'DotriceRegular'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'DotriceRegular'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'DotriceRegular'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- DOTRICE BOLD -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Dotrice — Bold</span>
+    <span class="font-file">hdad-dotrice-1.001/Dotrice-Bold.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'DotriceBold'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'DotriceBold'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'DotriceBold'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'DotriceBold'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'DotriceBold'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'DotriceBold'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- DOTRICE CONDENSED -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Dotrice — Condensed</span>
+    <span class="font-file">hdad-dotrice-1.001/Dotrice-Condensed.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'DotriceCondensed'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'DotriceCondensed'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'DotriceCondensed'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'DotriceCondensed'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'DotriceCondensed'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'DotriceCondensed'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- DOTRICE BOLD CONDENSED -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Dotrice — Bold Condensed</span>
+    <span class="font-file">hdad-dotrice-1.001/Dotrice-Bold-Condensed.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'DotriceBoldCondensed'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'DotriceBoldCondensed'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'DotriceBoldCondensed'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'DotriceBoldCondensed'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'DotriceBoldCondensed'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'DotriceBoldCondensed'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- DOTRICE EXPANDED -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Dotrice — Expanded</span>
+    <span class="font-file">hdad-dotrice-1.001/Dotrice-Expanded.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text sm" style="font-family:'DotriceExpanded'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text sm" style="font-family:'DotriceExpanded'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text sm" style="font-family:'DotriceExpanded'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text sm" style="font-family:'DotriceExpanded'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text sm" style="font-family:'DotriceExpanded'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text sm" style="font-family:'DotriceExpanded'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- DOTRICE BOLD EXPANDED -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Dotrice — Bold Expanded</span>
+    <span class="font-file">hdad-dotrice-1.001/Dotrice-Bold-Expanded.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text sm" style="font-family:'DotriceBoldExpanded'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text sm" style="font-family:'DotriceBoldExpanded'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text sm" style="font-family:'DotriceBoldExpanded'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text sm" style="font-family:'DotriceBoldExpanded'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text sm" style="font-family:'DotriceBoldExpanded'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text sm" style="font-family:'DotriceBoldExpanded'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- HOLD MONEY -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Hold Money</span>
+    <span class="font-file">hold-money/HoldMoney-Regular.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'HoldMoney'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'HoldMoney'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'HoldMoney'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'HoldMoney'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'HoldMoney'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'HoldMoney'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- HUSTLERS DEMO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Hustlers Demo</span>
+    <span class="font-file">hustlers-demo/HustlersDEmo-Regular.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'HustlersDemo'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'HustlersDemo'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'HustlersDemo'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'HustlersDemo'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'HustlersDemo'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'HustlersDemo'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- INSTINK -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Instink</span>
+    <span class="font-file">instink/Instink D.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Instink'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Instink'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Instink'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Instink'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Instink'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Instink'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- KAMIKAZE -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Kamikaze</span>
+    <span class="font-file">kamikaze/Kamikaze.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Kamikaze'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Kamikaze'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Kamikaze'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Kamikaze'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Kamikaze'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Kamikaze'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- KAMIKAZE ITALIC -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Kamikaze — Italic</span>
+    <span class="font-file">kamikaze/Kamikaze-Italic.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'KamikazeItalic'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'KamikazeItalic'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'KamikazeItalic'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'KamikazeItalic'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'KamikazeItalic'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'KamikazeItalic'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- KAMIKAZE 3D GRADIENT -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Kamikaze — 3D Gradient</span>
+    <span class="font-file">kamikaze/Kamikaze3DGradient.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Kamikaze3D'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Kamikaze3D'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Kamikaze3D'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Kamikaze3D'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Kamikaze3D'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Kamikaze3D'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- KARMATIC ARCADE -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Karmatic Arcade</span>
+    <span class="font-file">karmatic-arcade/ka1.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text sm" style="font-family:'KarmaticArcade'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text sm" style="font-family:'KarmaticArcade'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text sm" style="font-family:'KarmaticArcade'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text sm" style="font-family:'KarmaticArcade'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text sm" style="font-family:'KarmaticArcade'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text sm" style="font-family:'KarmaticArcade'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- KENJAKU DEMO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Kenjaku Demo</span>
+    <span class="font-file">kenjaku-demo/Kenjaku DEMO.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'KenjakuDemo'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'KenjakuDemo'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'KenjakuDemo'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'KenjakuDemo'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'KenjakuDemo'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'KenjakuDemo'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- LEMON SMASH -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Lemon Smash Demo</span>
+    <span class="font-file">lemon-smash-demo/LemonSmash-Regular.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'LemonSmash'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'LemonSmash'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'LemonSmash'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'LemonSmash'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'LemonSmash'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'LemonSmash'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- MARGIN DEMO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Margin Demo</span>
+    <span class="font-file">margin-demo/Margin DEMO.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'MarginDemo'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'MarginDemo'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'MarginDemo'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'MarginDemo'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'MarginDemo'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'MarginDemo'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- MASTERDAY -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Masterday</span>
+    <span class="font-file">masterday/Masterday.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Masterday'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Masterday'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Masterday'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Masterday'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Masterday'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Masterday'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- MIGHTY SOULY -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Mighty Souly</span>
+    <span class="font-file">mighty-souly/Mighty Souly.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'MightySouly'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'MightySouly'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'MightySouly'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'MightySouly'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'MightySouly'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'MightySouly'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- MONOTON -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Monoton</span>
+    <span class="font-file">monoton/Monoton-Regular.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text sm" style="font-family:'Monoton'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text sm" style="font-family:'Monoton'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text sm" style="font-family:'Monoton'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text sm" style="font-family:'Monoton'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text sm" style="font-family:'Monoton'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text sm" style="font-family:'Monoton'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- NEON -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Neon</span>
+    <span class="font-file">neon/NEON____.TTF</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Neon'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Neon'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Neon'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Neon'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Neon'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Neon'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- NEON FUTURE -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Neon Future</span>
+    <span class="font-file">neon-future/Neon Future.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'NeonFuture'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'NeonFuture'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'NeonFuture'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'NeonFuture'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'NeonFuture'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'NeonFuture'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- NEON SPARK -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Neon Spark</span>
+    <span class="font-file">neon-spark/Neon Spark.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'NeonSpark'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'NeonSpark'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'NeonSpark'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'NeonSpark'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'NeonSpark'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'NeonSpark'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- NEONRIFT -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Neonrift</span>
+    <span class="font-file">neonrift/Neonrift.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Neonrift'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Neonrift'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Neonrift'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Neonrift'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Neonrift'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Neonrift'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- OXYGENE 1 -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Oxygene 1</span>
+    <span class="font-file">oxygene-1/OXYGENE1.TTF</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Oxygene1'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Oxygene1'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Oxygene1'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Oxygene1'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Oxygene1'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Oxygene1'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- POLYPHIA DEMO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Polyphia Demo</span>
+    <span class="font-file">polyphia-demo/Polyphia DEMO.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'PolyphiaDemo'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'PolyphiaDemo'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'PolyphiaDemo'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'PolyphiaDemo'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'PolyphiaDemo'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'PolyphiaDemo'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- RAMBORS -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Rambors</span>
+    <span class="font-file">rambors/Rambors.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Rambors'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Rambors'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Rambors'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Rambors'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Rambors'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Rambors'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- REMARCLE -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Remarcle</span>
+    <span class="font-file">remarcle/Remarcle.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Remarcle'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Remarcle'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Remarcle'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Remarcle'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Remarcle'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Remarcle'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- SPRINT RUNNER DEMO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Sprint Runner Demo</span>
+    <span class="font-file">sprint-runner-demo/SprintRunnerDemoRegular.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'SprintRunner'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'SprintRunner'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'SprintRunner'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'SprintRunner'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'SprintRunner'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'SprintRunner'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- STANDER DEMO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Stander Demo</span>
+    <span class="font-file">stander-demo/Stander DEMO.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'StanderDemo'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'StanderDemo'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'StanderDemo'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'StanderDemo'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'StanderDemo'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'StanderDemo'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- TRUST PARADE -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Trust Parade</span>
+    <span class="font-file">trust-parade/TrustParade-Regular.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'TrustParade'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'TrustParade'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'TrustParade'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'TrustParade'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'TrustParade'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'TrustParade'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- UNPOPULAR MONTAGE -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Unpopular Montage</span>
+    <span class="font-file">unpopular-montage/Unpopular Montage.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'UnpopularMontage'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'UnpopularMontage'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'UnpopularMontage'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'UnpopularMontage'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'UnpopularMontage'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'UnpopularMontage'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- WHITE RABBIT -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">White Rabbit</span>
+    <span class="font-file">white-rabbit/whitrabt.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text sm" style="font-family:'WhiteRabbit'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text sm" style="font-family:'WhiteRabbit'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text sm" style="font-family:'WhiteRabbit'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text sm" style="font-family:'WhiteRabbit'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text sm" style="font-family:'WhiteRabbit'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text sm" style="font-family:'WhiteRabbit'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- ── NEW FONTS ── -->
+
+<!-- ASTROZ -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Astroz</span>
+    <span class="font-file">astroz/Astroz Trial.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Astroz'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Astroz'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Astroz'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Astroz'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Astroz'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Astroz'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- AWESOME CHRISTMAS -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Awesome Christmas Demo</span>
+    <span class="font-file">awesome-christmas-demo/Awesome Christmas Demo.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'AwesomeChristmas'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'AwesomeChristmas'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'AwesomeChristmas'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'AwesomeChristmas'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'AwesomeChristmas'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'AwesomeChristmas'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- BECOME CRITICAL DEMO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Become Critical Demo</span>
+    <span class="font-file">become-critical-demo/BECOME CRITICAL DEMO.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'BecomeCritical'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'BecomeCritical'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'BecomeCritical'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'BecomeCritical'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'BecomeCritical'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'BecomeCritical'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- BOOGIE NIGHTS NF -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Boogie Nights NF</span>
+    <span class="font-file">boogie-nights-nf/BoogieNightsNFShadow.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'BoogieNights'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'BoogieNights'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'BoogieNights'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'BoogieNights'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'BoogieNights'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'BoogieNights'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- BRAFESUIT -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Brafesuit</span>
+    <span class="font-file">brafesuit/Brafesuit.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Brafesuit'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Brafesuit'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Brafesuit'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Brafesuit'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Brafesuit'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Brafesuit'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- DEATH STAR -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Death Star</span>
+    <span class="font-file">death-star/Death Star.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'DeathStar'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'DeathStar'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'DeathStar'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'DeathStar'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'DeathStar'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'DeathStar'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- DECOFUN -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Decofun</span>
+    <span class="font-file">decofun/Decofun-Regular.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Decofun'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Decofun'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Decofun'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Decofun'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Decofun'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Decofun'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- DEVENTER -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Deventer</span>
+    <span class="font-file">deventer/Deventer - PERSONAL USE.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'Deventer'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'Deventer'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'Deventer'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'Deventer'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'Deventer'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'Deventer'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- LIQUID GALAXY -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Liquid Galaxy</span>
+    <span class="font-file">liquid-galaxy/Liquidgalaxy-Regular.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'LiquidGalaxy'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'LiquidGalaxy'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'LiquidGalaxy'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'LiquidGalaxy'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'LiquidGalaxy'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'LiquidGalaxy'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- MERA MERO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Mera Mero</span>
+    <span class="font-file">mera-mero/Mera Mero.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'MeraMero'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'MeraMero'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'MeraMero'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'MeraMero'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'MeraMero'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'MeraMero'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- MORVIFUN EXPANDED -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Morvifun Expanded</span>
+    <span class="font-file">morvifun-expanded/MorvifunExpanded-Expanded.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text sm" style="font-family:'MorvifunExpanded'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text sm" style="font-family:'MorvifunExpanded'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text sm" style="font-family:'MorvifunExpanded'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text sm" style="font-family:'MorvifunExpanded'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text sm" style="font-family:'MorvifunExpanded'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text sm" style="font-family:'MorvifunExpanded'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- ROTURA VINTAGE DEMO -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Rotura Vintage Demo</span>
+    <span class="font-file">rotura-vintage-demo/RoturaVintageDemo-Regular.otf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'RoturaVintage'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'RoturaVintage'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'RoturaVintage'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'RoturaVintage'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'RoturaVintage'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'RoturaVintage'">skint labs</span></div>
+  </div>
+</div>
+
+<!-- TAKE A SHOT PERSONAL USE -->
+<div class="font-block">
+  <div class="font-header">
+    <span class="font-name">Take a Shot</span>
+    <span class="font-file">take-a-shot-personal-use/TAKE A SHOT PERSONAL USE.ttf</span>
+  </div>
+  <div class="variants-grid">
+    <div class="variant-cell"><span class="variant-label">Skint Labs</span><span class="variant-text" style="font-family:'TakeAShot'">Skint Labs</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabs</span><span class="variant-text" style="font-family:'TakeAShot'">SkintLabs</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINT LABS</span><span class="variant-text" style="font-family:'TakeAShot'">SKINT LABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SKINTLABS</span><span class="variant-text" style="font-family:'TakeAShot'">SKINTLABS</span></div>
+    <div class="variant-cell"><span class="variant-label">SkintLabS</span><span class="variant-text" style="font-family:'TakeAShot'">SkintLabS</span></div>
+    <div class="variant-cell"><span class="variant-label">skint labs</span><span class="variant-text" style="font-family:'TakeAShot'">skint labs</span></div>
+  </div>
+</div>
+
+</body>
+</html>

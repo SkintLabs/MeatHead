@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#0c0b0a"/>
+
+  <!-- Title -->
+  <text x="600" y="60" font-family="serif" font-size="48" font-weight="900" fill="#e76f51" text-anchor="middle">
+    Four Layers of Defense
+  </text>
+  <text x="600" y="110" font-family="sans-serif" font-size="18" fill="#999" text-anchor="middle">
+    Layered protection stops attacks at every stage
+  </text>
+
+  <!-- Layer 1: Prompt Injection Detection -->
+  <rect x="80" y="160" width="250" height="280" rx="12" fill="#1a1917" stroke="#e76f51" stroke-width="3"/>
+  <circle cx="110" cy="190" r="20" fill="#e76f51"/>
+  <text x="130" y="205" font-family="sans-serif" font-size="14" font-weight="600" fill="#e76f51">LAYER 1</text>
+  <text x="110" y="245" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+    Prompt
+  </text>
+  <text x="110" y="275" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+    Injection
+  </text>
+  <text x="110" y="305" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+    Detection
+  </text>
+  <text x="110" y="355" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    Detects [INST], jailbreak
+  </text>
+  <text x="110" y="378" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    patterns, hidden
+  </text>
+  <text x="110" y="401" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    instructions before LLM
+  </text>
+
+  <!-- Layer 2: Topic Enforcement -->
+  <rect x="380" y="160" width="250" height="280" rx="12" fill="#1a1917" stroke="#d4a040" stroke-width="3"/>
+  <circle cx="410" cy="190" r="20" fill="#d4a040"/>
+  <text x="430" y="205" font-family="sans-serif" font-size="14" font-weight="600" fill="#d4a040">LAYER 2</text>
+  <text x="410" y="245" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+    Topic
+  </text>
+  <text x="410" y="275" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+    Boundary
+  </text>
+  <text x="410" y="305" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+    Enforcement
+  </text>
+  <text x="410" y="355" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    Keeps responses
+  </text>
+  <text x="410" y="378" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    focused on ecommerce,
+  </text>
+  <text x="410" y="401" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    blocks off-topic pivots
+  </text>
+
+  <!-- Layer 3: Data Leak Prevention -->
+  <rect x="680" y="160" width="250" height="280" rx="12" fill="#1a1917" stroke="#c1666b" stroke-width="3"/>
+  <circle cx="710" cy="190" r="20" fill="#c1666b"/>
+  <text x="730" y="205" font-family="sans-serif" font-size="14" font-weight="600" fill="#c1666b">LAYER 3</text>
+  <text x="710" y="245" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+    Data Leak
+  </text>
+  <text x="710" y="275" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+    Detection
+  </text>
+  <text x="710" y="305" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+  </text>
+  <text x="710" y="355" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    Blocks API keys, PII,
+  </text>
+  <text x="710" y="378" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    credentials, and
+  </text>
+  <text x="710" y="401" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    sensitive patterns
+  </text>
+
+  <!-- Layer 4: File Upload Sanitization -->
+  <rect x="980" y="160" width="250" height="280" rx="12" fill="#1a1917" stroke="#4a8c7b" stroke-width="3"/>
+  <circle cx="1010" cy="190" r="20" fill="#4a8c7b"/>
+  <text x="1030" y="205" font-family="sans-serif" font-size="14" font-weight="600" fill="#4a8c7b">LAYER 4</text>
+  <text x="1010" y="245" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+    File Upload
+  </text>
+  <text x="1010" y="275" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+    Sanitization
+  </text>
+  <text x="1010" y="305" font-family="serif" font-size="22" font-weight="700" fill="#ede8e0" text-anchor="middle">
+  </text>
+  <text x="1010" y="355" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    Strips EXIF, GPS, and
+  </text>
+  <text x="1010" y="378" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    other metadata from
+  </text>
+  <text x="1010" y="401" font-family="sans-serif" font-size="13" fill="#bbb" text-anchor="middle">
+    images and documents
+  </text>
+
+  <!-- Bottom message -->
+  <rect x="100" y="680" width="1100" height="100" rx="12" fill="#1a1917" stroke="#ddd" stroke-width="2" opacity="0.5"/>
+  <text x="600" y="725" font-family="serif" font-size="24" font-weight="700" fill="#e76f51" text-anchor="middle">
+    Defense in Depth
+  </text>
+  <text x="600" y="760" font-family="sans-serif" font-size="16" fill="#bbb" text-anchor="middle">
+    Every layer catches different attack vectors. Runs locally with zero external API calls and under 2ms latency.
+  </text>
+</svg>

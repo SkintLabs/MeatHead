@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Font Picker — Skint Labs</title>
+<style>
+@font-face { font-family: 'RetroByte';        src: url('FONTS/RetroByte.ttf'); }
+@font-face { font-family: 'Astroz';           src: url('FONTS/astroz/Astroz Trial.ttf'); }
+@font-face { font-family: 'BoogieNights';     src: url('FONTS/boogie-nights-nf/BoogieNightsNF.ttf'); }
+@font-face { font-family: 'BoogieShad';       src: url('FONTS/boogie-nights-nf/BoogieNightsNFShadow.ttf'); }
+@font-face { font-family: 'Brafesuit';        src: url('FONTS/brafesuit/Brafesuit.ttf'); }
+@font-face { font-family: 'CalcioItaliano';   src: url('FONTS/calcio-italiano/Calcio-Italiano-Free-Personal-Use.ttf'); }
+@font-face { font-family: 'CoralPixels';      src: url('FONTS/coral-pixels/CoralPixels-Regular.ttf'); }
+@font-face { font-family: 'CreateFuture';     src: url('FONTS/create-future/Create Future.otf'); }
+@font-face { font-family: 'DeLatto';          src: url('FONTS/de-latto/DeLatto.ttf'); }
+@font-face { font-family: 'DeathStar';        src: url('FONTS/death-star/Death Star.otf'); }
+@font-face { font-family: 'Decofun';          src: url('FONTS/decofun/Decofun-Regular.ttf'); }
+@font-face { font-family: 'Deventer';         src: url('FONTS/deventer/Deventer - PERSONAL USE.otf'); }
+@font-face { font-family: 'FluxDemo';         src: url('FONTS/fluxdemo/FluxDemo.ttf'); }
+@font-face { font-family: 'GoldenGirdle';     src: url('FONTS/golden-girdle/Golden Girdle.otf'); }
+@font-face { font-family: 'Dotrice';          src: url('FONTS/hdad-dotrice-1.001/Dotrice-Bold.otf'); }
+@font-face { font-family: 'HoldMoney';        src: url('FONTS/hold-money/HoldMoney-Regular.ttf'); }
+@font-face { font-family: 'Hustlers';         src: url('FONTS/hustlers-demo/HustlersDEmo-Regular.otf'); }
+@font-face { font-family: 'Instink';          src: url('FONTS/instink/Instink D.ttf'); }
+@font-face { font-family: 'Kamikaze';         src: url('FONTS/kamikaze/Kamikaze.ttf'); }
+@font-face { font-family: 'KamikazeItalic';   src: url('FONTS/kamikaze/Kamikaze-Italic.ttf'); }
+@font-face { font-family: 'Kamikaze3D';       src: url('FONTS/kamikaze/Kamikaze3DGradient.ttf'); }
+@font-face { font-family: 'KarmaticArcade';   src: url('FONTS/karmatic-arcade/ka1.ttf'); }
+@font-face { font-family: 'LemonSmash';       src: url('FONTS/lemon-smash-demo/LemonSmash-Regular.otf'); }
+@font-face { font-family: 'LiquidGalaxy';     src: url('FONTS/liquid-galaxy/Liquidgalaxy-Regular.ttf'); }
+@font-face { font-family: 'Masterday';        src: url('FONTS/masterday/Masterday.otf'); }
+@font-face { font-family: 'MeraMero';         src: url('FONTS/mera-mero/Mera Mero.ttf'); }
+@font-face { font-family: 'MightySouly';      src: url('FONTS/mighty-souly/Mighty Souly.otf'); }
+@font-face { font-family: 'Monoton';          src: url('FONTS/monoton/Monoton-Regular.ttf'); }
+@font-face { font-family: 'Morvifun';         src: url('FONTS/morvifun-expanded/MorvifunExpanded-Expanded.ttf'); }
+@font-face { font-family: 'NeonFuture';       src: url('FONTS/neon-future/Neon Future.ttf'); }
+@font-face { font-family: 'NeonSpark';        src: url('FONTS/neon-spark/Neon Spark.otf'); }
+@font-face { font-family: 'Neonrift';         src: url('FONTS/neonrift/Neonrift.ttf'); }
+@font-face { font-family: 'Polyphia';         src: url('FONTS/polyphia-demo/Polyphia DEMO.ttf'); }
+@font-face { font-family: 'Rambors';          src: url('FONTS/rambors/Rambors.ttf'); }
+@font-face { font-family: 'Remarcle';         src: url('FONTS/remarcle/Remarcle.ttf'); }
+@font-face { font-family: 'RoturaVintage';    src: url('FONTS/rotura-vintage-demo/RoturaVintageDemo-Regular.otf'); }
+@font-face { font-family: 'SprintRunner';     src: url('FONTS/sprint-runner-demo/SprintRunnerDemoRegular.ttf'); }
+@font-face { font-family: 'TakeAShot';        src: url('FONTS/take-a-shot-personal-use/TAKE A SHOT PERSONAL USE.ttf'); }
+@font-face { font-family: 'TrustParade';      src: url('FONTS/trust-parade/TrustParade-Regular.ttf'); }
+@font-face { font-family: 'UnpopularMontage'; src: url('FONTS/unpopular-montage/Unpopular Montage.ttf'); }
+@font-face { font-family: 'WhiteRabbit';      src: url('FONTS/white-rabbit/whitrabt.ttf'); }
+@font-face { font-family: 'BecomeCritical';   src: url('FONTS/become-critical-demo/BECOME CRITICAL DEMO.ttf'); }
+@font-face { font-family: 'Kenjaku';          src: url('FONTS/kenjaku-demo/Kenjaku DEMO.otf'); }
+@font-face { font-family: 'StanderDemo';      src: url('FONTS/stander-demo/Stander DEMO.otf'); }
+@font-face { font-family: 'MarginDemo';       src: url('FONTS/margin-demo/Margin DEMO.otf'); }
+@font-face { font-family: 'Kamikaze3DItalic'; src: url('FONTS/kamikaze/Kamikaze3DGradient-Italic.ttf'); }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #0a0908;
+  color: #e8e0d5;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 40px 28px 100px;
+}
+
+header {
+  margin-bottom: 36px;
+}
+
+header h1 {
+  font-size: 1.2rem;
+  color: #d4a040;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+header p {
+  font-size: 0.8rem;
+  color: #554f45;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #1e1c18;
+  padding-bottom: 16px;
+}
+
+.tab-btn {
+  background: #141210;
+  border: 1px solid #2a2520;
+  color: #7a7065;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.tab-btn:hover, .tab-btn.active {
+  background: #1e1c18;
+  border-color: #d4a040;
+  color: #d4a040;
+}
+
+.section { display: none; }
+.section.active { display: block; }
+
+.font-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0;
+  align-items: stretch;
+  border-bottom: 1px solid #151310;
+  padding: 18px 0;
+}
+
+.font-row:first-child { border-top: 1px solid #151310; }
+
+.font-meta {
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.font-meta .name {
+  font-size: 0.72rem;
+  color: #d4a040;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.font-meta .hint {
+  font-size: 0.65rem;
+  color: #3a3530;
+}
+
+.samples {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 1px solid #1e1c18;
+  padding-left: 24px;
+}
+
+.sample-line {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.case-tag {
+  font-size: 0.6rem;
+  color: #3a3530;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: right;
+  line-height: 1;
+}
+
+.samp {
+  font-size: 2rem;
+  line-height: 1.2;
+  color: #e8e0d5;
+  overflow-wrap: anywhere;
+}
+
+/* product colour accents */
+.samp.meathead   { color: #e8e0d5; }
+.samp.wonderwall { color: #c8d4e8; }
+.samp.jerry      { color: #d4c8b8; font-size: 1.2rem; }
+
+.product-divider {
+  height: 1px;
+  background: #1a1815;
+  margin: 6px 0 6px 42px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Font Picker — Skint Labs</h1>
+  <p>Your actual local fonts. Click a tab to filter. Each shows MeatHead / WonderwallAi / Jerry in Aa · AA · aa.</p>
+</header>
+
+<div class="tabs" id="tabs"></div>
+
+<div id="sections"></div>
+
+<script>
+const SECTIONS = [
+  { id: 'all',       label: 'All Fonts' },
+  { id: 'display',   label: 'Display / Bold' },
+  { id: 'scifi',     label: 'Sci-fi / Tech' },
+  { id: 'retro',     label: 'Retro / Pixel' },
+  { id: 'graphic',   label: 'Hand-built' },
+  { id: 'elegant',   label: 'Elegant' },
+];
+
+const FONTS = [
+  // Display / Bold
+  { family: 'Kamikaze',       label: 'Kamikaze',          cat: 'display' },
+  { family: 'KamikazeItalic', label: 'Kamikaze Italic',   cat: 'display' },
+  { family: 'Kamikaze3D',     label: 'Kamikaze 3D',       cat: 'display' },
+  { family: 'Kamikaze3DItalic',label:'Kamikaze 3D Italic', cat: 'display' },
+  { family: 'Rambors',        label: 'Rambors',           cat: 'display' },
+  { family: 'Dotrice',        label: 'Dotrice Bold',      cat: 'display' },
+  { family: 'Morvifun',       label: 'Morvifun Expanded', cat: 'display' },
+  { family: 'SprintRunner',   label: 'Sprint Runner',     cat: 'display' },
+  { family: 'Brafesuit',      label: 'Brafesuit',         cat: 'display' },
+  { family: 'TrustParade',    label: 'Trust Parade',      cat: 'display' },
+  { family: 'Polyphia',       label: 'Polyphia',          cat: 'display' },
+  { family: 'StanderDemo',    label: 'Stander',           cat: 'display' },
+  { family: 'CalcioItaliano', label: 'Calcio Italiano',   cat: 'display' },
+  { family: 'BecomeCritical', label: 'Become Critical',   cat: 'display' },
+  { family: 'HoldMoney',      label: 'Hold Money',        cat: 'display' },
+  { family: 'LemonSmash',     label: 'Lemon Smash',       cat: 'display' },
+  // Sci-fi / Tech
+  { family: 'DeathStar',      label: 'Death Star',        cat: 'scifi' },
+  { family: 'Astroz',         label: 'Astroz',            cat: 'scifi' },
+  { family: 'CreateFuture',   label: 'Create Future',     cat: 'scifi' },
+  { family: 'NeonFuture',     label: 'Neon Future',       cat: 'scifi' },
+  { family: 'NeonSpark',      label: 'Neon Spark',        cat: 'scifi' },
+  { family: 'Neonrift',       label: 'Neonrift',          cat: 'scifi' },
+  { family: 'FluxDemo',       label: 'Flux',              cat: 'scifi' },
+  { family: 'LiquidGalaxy',   label: 'Liquid Galaxy',     cat: 'scifi' },
+  { family: 'Deventer',       label: 'Deventer',          cat: 'scifi' },
+  { family: 'MarginDemo',     label: 'Margin',            cat: 'scifi' },
+  { family: 'MeraMero',       label: 'Mera Mero',         cat: 'scifi' },
+  { family: 'Kenjaku',        label: 'Kenjaku',           cat: 'scifi' },
+  // Retro / Pixel
+  { family: 'RetroByte',      label: 'RetroByte',         cat: 'retro' },
+  { family: 'KarmaticArcade', label: 'Karmatic Arcade',   cat: 'retro' },
+  { family: 'CoralPixels',    label: 'Coral Pixels',      cat: 'retro' },
+  { family: 'WhiteRabbit',    label: 'White Rabbit',      cat: 'retro' },
+  { family: 'Monoton',        label: 'Monoton',           cat: 'retro' },
+  { family: 'Remarcle',       label: 'Remarcle',          cat: 'retro' },
+  // Hand-built / Graphic
+  { family: 'BoogieNights',   label: 'Boogie Nights',     cat: 'graphic' },
+  { family: 'BoogieShad',     label: 'Boogie Nights Shadow', cat: 'graphic' },
+  { family: 'TakeAShot',      label: 'Take A Shot',       cat: 'graphic' },
+  { family: 'Hustlers',       label: 'Hustlers',          cat: 'graphic' },
+  { family: 'Instink',        label: 'Instink',           cat: 'graphic' },
+  { family: 'DeLatto',        label: 'De Latto',          cat: 'graphic' },
+  { family: 'Decofun',        label: 'Decofun',           cat: 'graphic' },
+  { family: 'RoturaVintage',  label: 'Rotura Vintage',    cat: 'graphic' },
+  // Elegant
+  { family: 'GoldenGirdle',     label: 'Golden Girdle',     cat: 'elegant' },
+  { family: 'Masterday',        label: 'Masterday',         cat: 'elegant' },
+  { family: 'MightySouly',      label: 'Mighty Souly',      cat: 'elegant' },
+  { family: 'UnpopularMontage', label: 'Unpopular Montage', cat: 'elegant' },
+];
+
+const PRODUCTS = [
+  { key: 'meathead',   base: 'MeatHead' },
+  { key: 'wonderwall', base: 'WonderwallAi' },
+  { key: 'jerry',      base: 'Jerry The Customer Service Bot' },
+];
+
+function makeSamples(font) {
+  const wrap = document.createElement('div');
+  wrap.className = 'samples';
+
+  PRODUCTS.forEach((product, pi) => {
+    if (pi > 0) {
+      const div = document.createElement('div');
+      div.className = 'product-divider';
+      wrap.appendChild(div);
+    }
+    const variants = [product.base, product.base.toUpperCase(), product.base.toLowerCase()];
+    const cases = ['Aa', 'AA', 'aa'];
+    variants.forEach((text, i) => {
+      const line = document.createElement('div');
+      line.className = 'sample-line';
+      const tag = document.createElement('div');
+      tag.className = 'case-tag';
+      tag.textContent = cases[i];
+      const samp = document.createElement('div');
+      samp.className = `samp ${product.key}`;
+      samp.style.fontFamily = `'${font.family}', sans-serif`;
+      samp.textContent = text;
+      line.appendChild(tag);
+      line.appendChild(samp);
+      wrap.appendChild(line);
+    });
+  });
+  return wrap;
+}
+
+function renderSection(id) {
+  const fonts = id === 'all' ? FONTS : FONTS.filter(f => f.cat === id);
+  const sec = document.createElement('div');
+  sec.className = 'section' + (id === 'all' ? ' active' : '');
+  sec.id = 'sec-' + id;
+
+  fonts.forEach(font => {
+    const row = document.createElement('div');
+    row.className = 'font-row';
+
+    const meta = document.createElement('div');
+    meta.className = 'font-meta';
+    meta.innerHTML = `<div class="name">${font.label}</div><div class="hint">${font.cat}</div>`;
+
+    row.appendChild(meta);
+    row.appendChild(makeSamples(font));
+    sec.appendChild(row);
+  });
+
+  return sec;
+}
+
+// Build tabs
+const tabsEl = document.getElementById('tabs');
+const sectionsEl = document.getElementById('sections');
+
+SECTIONS.forEach(s => {
+  const btn = document.createElement('button');
+  btn.className = 'tab-btn' + (s.id === 'all' ? ' active' : '');
+  btn.textContent = s.label;
+  btn.dataset.id = s.id;
+  btn.onclick = () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('sec-' + s.id).classList.add('active');
+  };
+  tabsEl.appendChild(btn);
+  sectionsEl.appendChild(renderSection(s.id));
+});
+</script>
+</body>
+</html>

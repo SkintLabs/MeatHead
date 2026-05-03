@@ -1,12 +1,14 @@
 """
 MeatHead — AI Content Generation Engine
 Generates humanized marketing content using Groq/Llama 3.3.
-Includes a "First-Time-Right" validation pipeline that rejects AI fingerprints
-and forces self-correction before the output ever reaches the dashboard.
+Reads a knowledge base (knowledge.md) on startup — or on every call when
+RELOAD_KNOWLEDGE=true — so you can update voice/product context without
+redeploying.
 """
 
 import re
 import logging
+import pathlib
 from typing import Optional
 
 from groq import AsyncGroq
@@ -15,17 +17,11 @@ from server.utils.humanizer import apply_human_entropy
 
 logger = logging.getLogger("meathead.ai")
 
-# Terms that scream "AI wrote this"
-BANNED_TERMS = [
-    "delve", "seamless", "robust", "game-changer", "pain point",
-    "edge case", "empower", "leverage", "moreover", "furthermore",
-    "revolutionize", "cutting-edge", "paradigm", "synergy", "holistic",
-    "streamline", "innovative", "next-generation", "best-in-class",
-]
+KNOWLEDGE_PATH = pathlib.Path(__file__).parent.parent.parent / "knowledge.md"
 
 # Structural patterns that AIs love but humans don't use
 BANNED_PATTERNS = [
-    r"\u2014",             # Em-dash
+    r"—",             # Em-dash
     r"--",                 # Double hyphen (em-dash substitute)
     r"^\d+\.\s+",         # Numbered lists (e.g., "1. ")
     r"In conclusion",
@@ -36,10 +32,22 @@ BANNED_PATTERNS = [
 ]
 
 
+def _load_knowledge() -> str:
+    """Read knowledge.md and return its contents, or empty string on failure."""
+    try:
+        return KNOWLEDGE_PATH.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        logger.warning("knowledge.md not found at %s — running without it", KNOWLEDGE_PATH)
+        return ""
+    except Exception as exc:
+        logger.error("Failed to load knowledge.md: %s", exc)
+        return ""
+
+
 class MeatHeadEngine:
     """
-    Content generation engine with strict anti-AI validation.
-    Generates → validates → retries if needed → humanizes.
+    Content generation engine with knowledge-base context and anti-AI validation.
+    Generates -> validates -> retries if needed -> humanizes.
     """
 
     def __init__(self):
@@ -47,7 +55,10 @@ class MeatHeadEngine:
         settings = get_settings()
         self.api_key = settings.groq_api_key
         self.model = settings.groq_model
+        self.reload_knowledge = settings.reload_knowledge
         self.configured = bool(self.api_key)
+
+        self._knowledge: str = _load_knowledge()
 
         if self.configured:
             self.client = AsyncGroq(api_key=self.api_key)
@@ -56,66 +67,68 @@ class MeatHeadEngine:
             self.client = None
             logger.warning("MeatHeadEngine: GROQ_API_KEY not set")
 
+    def _get_knowledge(self) -> str:
+        if self.reload_knowledge:
+            return _load_knowledge()
+        return self._knowledge
+
     def _build_system_prompt(self, platform: str, mention_count: int = 0) -> str:
-        """Build platform-specific system prompt with anti-AI constraints."""
+        """Build platform-specific system prompt with knowledge-base context."""
+        knowledge = self._get_knowledge()
+
         base = (
-            "You are a pragmatic, technical developer from Australia/UK. You speak in clean, natural English. "
-            "You have zero tolerance for corporate jargon, fluff, or standard AI formatting.\n\n"
-            "CORE OBJECTIVE: Help the user solve their problem. Mention WonderwallAi (for LLM security, <2ms latency) "
-            "or Jerry (Shopify customer service bot) ONLY if it naturally solves their specific issue.\n\n"
-            "STRICT CONSTRAINTS:\n"
-            "- Use ONLY standard keyboard characters. Do not use em-dashes. Use commas or full stops instead.\n"
-            "- Do not use bullet points or numbered lists. Write in natural paragraphs.\n"
-            "- Do not summarise your own points at the end.\n"
-            "- Never sound confident. Use phrases like 'I'm pretty sure', 'from memory', or 'correct me if I'm wrong'.\n"
-            "- Keep responses concise, under 200 words unless the topic genuinely demands more.\n"
-            "- Do not start with 'I' as the first word.\n"
+            "You are writing as the person described in the knowledge base below. "
+            "Read it carefully — it defines your voice, your products, what you can and can't claim, "
+            "and how to handle specific situations.\n\n"
+        )
+
+        if knowledge:
+            base += f"--- KNOWLEDGE BASE ---\n{knowledge}\n--- END KNOWLEDGE BASE ---\n\n"
+
+        base += (
+            "HARD FORMATTING RULES (never break these):\n"
+            "- Use ONLY standard keyboard characters. No em-dashes. Use commas or full stops instead.\n"
+            "- Write in natural paragraphs. No bullet points, no numbered lists.\n"
+            "- Don't summarise your own points at the end.\n"
+            "- Keep it under 200 words unless the topic genuinely demands more.\n"
+            "- Don't start with 'I' as the first word.\n"
         )
 
         if platform == "reddit":
             base += (
-                "\nREDDIT RULES:\n"
-                "- Write like a real Redditor. No marketing speak.\n"
-                "- Match the subreddit's culture and technical level.\n"
-                "- If recommending a tool, frame it as personal experience, not a pitch.\n"
-                "- Use casual language. Contractions are good.\n"
+                "\nREDDIT:\n"
+                "Write like a real Redditor. Match the subreddit's culture and technical level. "
+                "If recommending a tool, frame it as personal experience, never a pitch. "
+                "Use casual language and contractions.\n"
             )
         elif platform == "facebook":
             base += (
-                "\nFACEBOOK RULES:\n"
-                "- Write an engaging, shareable post.\n"
-                "- Can be slightly more polished than Reddit but still authentic.\n"
-                "- Include a soft call-to-action if relevant.\n"
-                "- Keep it under 300 words.\n"
+                "\nFACEBOOK:\n"
+                "Engaging and shareable, but still authentic. "
+                "Slightly more polished than Reddit. Soft call-to-action only if it fits naturally. "
+                "Under 300 words.\n"
             )
         elif platform == "email":
             base += (
-                "\nEMAIL RULES:\n"
-                "- Write a professional but personal cold email.\n"
-                "- Clear value proposition in the first sentence.\n"
-                "- Keep it short, 3-4 sentences max for the body.\n"
-                "- End with a specific, low-commitment ask.\n"
+                "\nEMAIL:\n"
+                "Professional but personal. Clear value in the first sentence. "
+                "3-4 sentences max for the body. End with a specific, low-commitment ask.\n"
             )
 
         if mention_count > 2:
             base += (
-                "\nCRITICAL: You have mentioned Skint Labs products recently. "
-                "Acknowledge this naturally. Example: 'I know I keep banging on about this, "
+                "\nCRITICAL: You've mentioned Skint Labs products a lot recently. "
+                "Acknowledge it naturally. Example: 'I know I keep coming back to this, "
                 "but WonderwallAi genuinely stopped the breaches we were seeing...'\n"
             )
 
         return base
 
     def _validate_output(self, text: str) -> tuple[bool, str]:
-        """Check text for AI fingerprints. Returns (is_valid, reason_if_invalid)."""
-        for term in BANNED_TERMS:
-            if term.lower() in text.lower():
-                return False, f"Used banned corporate term: '{term}'"
-
+        """Check text for AI structural fingerprints. Returns (is_valid, reason_if_invalid)."""
         for pattern in BANNED_PATTERNS:
             if re.search(pattern, text, re.MULTILINE):
                 return False, f"Used banned structural pattern: {pattern}"
-
         return True, ""
 
     async def generate_reply(
@@ -153,7 +166,6 @@ class MeatHeadEngine:
                 return apply_human_entropy(draft)
 
             logger.warning(f"MeatHead validation failed (attempt {attempt + 1}): {reason}")
-            # Feed the failure back so Groq corrects itself
             messages.append({"role": "assistant", "content": draft})
             messages.append({
                 "role": "user",
@@ -164,9 +176,8 @@ class MeatHeadEngine:
                 ),
             })
 
-        # Last resort: strip obvious markers manually
         logger.error("MeatHead failed all validation retries. Applying forced manual override.")
-        draft = draft.replace("\u2014", ",").replace("--", ",")
+        draft = draft.replace("—", ",").replace("--", ",")
         return apply_human_entropy(draft)
 
     async def generate_content(
@@ -186,7 +197,6 @@ class MeatHeadEngine:
             context += "\n\nGenerate a subject line on the first line, then the email body."
 
         raw_body = await self.generate_reply(platform, context)
-        # raw_body already has humanizer applied from generate_reply
 
         title = None
         body = raw_body
@@ -222,7 +232,7 @@ class MeatHeadEngine:
         )
 
         improved = response.choices[0].message.content.strip()
-        improved = improved.replace("\u2014", ",").replace("--", ",")
+        improved = improved.replace("—", ",").replace("--", ",")
         return apply_human_entropy(improved)
 
     # --- Legacy method for GiLLBoT email sequences (backward compat) ---

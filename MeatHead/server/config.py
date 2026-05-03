@@ -78,6 +78,9 @@ class Settings(BaseSettings):
     facebook_page_id: str = Field(default="", alias="FACEBOOK_PAGE_ID")
     facebook_access_token: str = Field(default="", alias="FACEBOOK_ACCESS_TOKEN")
 
+    # --- Knowledge Base ---
+    reload_knowledge: bool = Field(default=False, alias="RELOAD_KNOWLEDGE")
+
     # --- App ---
     app_url: str = Field(default="http://localhost:8000", alias="APP_URL")
     unsubscribe_secret: str = Field(

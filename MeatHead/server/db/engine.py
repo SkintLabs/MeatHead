@@ -27,6 +27,7 @@ import logging
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
+from dotenv import load_dotenv
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
@@ -35,6 +36,8 @@ from sqlalchemy.ext.asyncio import (
 )
 
 from server.db.models import Base
+
+load_dotenv()
 
 logger = logging.getLogger("gillbot.db")
 
@@ -57,6 +60,9 @@ engine: AsyncEngine = create_async_engine(
     echo=os.getenv("SQL_ECHO", "").lower() == "true",
     pool_size=10,
     max_overflow=20,
+    # Railway managed Postgres requires SSL. Local dev (no "railway" in URL)
+    # connects without SSL as before.
+    connect_args={"ssl": "require"} if "railway" in DATABASE_URL else {},
 )
 
 # Session factory — produces async sessions

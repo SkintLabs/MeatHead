@@ -50,8 +50,10 @@ def fat_finger_mistake(text: str, error_rate: float = 0.002, max_errors: int = 1
 
 def apply_human_entropy(text: str) -> str:
     """Run lazy typing filters over validated AI output with strict probability limits."""
-    # 1. Inject a maximum of 1 typo per generation
-    text = fat_finger_mistake(text)
+    # 1. Typo injection disabled. Intentional typos in brand-adjacent posts read
+    #    worse than they sound in theory, and the validator + voice context
+    #    already get us past the AI-detection bar.
+    text = fat_finger_mistake(text, error_rate=0.0)
 
     # 2. Lowercase start of sentence occasionally (10% chance, after commas only)
     if random.random() < 0.10:

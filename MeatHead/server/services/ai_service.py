@@ -19,6 +19,31 @@ logger = logging.getLogger("meathead.ai")
 
 KNOWLEDGE_PATH = pathlib.Path(__file__).parent.parent.parent / "knowledge.md"
 
+# Hardcoded product facts. Used as a fallback if knowledge.md can't be loaded
+# (e.g. missing in a production deploy). knowledge.md, when present, is the
+# source of truth and includes this content plus the extended voice/scenarios.
+PRODUCT_FACTS = """
+WONDERWALLAI - what it actually is:
+- An LLM security SDK (drop-in middleware) that sits in front of your model.
+- Catches prompt injection, jailbreaks, PII leaks, and unsafe outputs.
+- Sub-2ms latency overhead. Open source MIT-licensed core, hosted API option.
+- Live at wonderwallai.skintlabs.ai. Built by Skint Labs (Melbourne).
+- Audience: developers shipping LLM features who don't want to roll their own guardrails.
+- Tone when mentioning: technical, specific, never marketing-speak.
+
+JERRY - what it actually is:
+- An AI customer service bot specifically for Shopify stores.
+- Handles order status, shipping, returns, product questions in 8 languages.
+- Stripe-billed (Starter / Growth / Scale tiers).
+- Live at jerry.skintlabs.ai.
+- Audience: small-to-mid Shopify merchants drowning in support tickets.
+- Tone when mentioning: practical, results-focused (saved hours, ticket volume down).
+
+SKINT LABS - the parent brand:
+- Solo-founder Australian indie lab building dev tools and AI infra.
+- skintlabs.ai. Tagline: Build the future.
+"""
+
 # Structural patterns that indicate AI-generated output
 BANNED_PATTERNS = [
     (r"—", "em-dash"),
@@ -127,6 +152,10 @@ class MeatHeadEngine:
 
         if knowledge:
             base += f"--- KNOWLEDGE BASE ---\n{knowledge}\n--- END KNOWLEDGE BASE ---\n\n"
+        else:
+            # Fallback: knowledge.md missing/unreadable. Use the embedded facts
+            # so the model still has product context to work with.
+            base += f"--- PRODUCT FACTS ---\n{PRODUCT_FACTS}\n--- END PRODUCT FACTS ---\n\n"
 
         base += (
             "HARD RULES — breaking any of these means the response is rejected and you rewrite:\n"

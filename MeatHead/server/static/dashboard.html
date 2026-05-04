@@ -1032,7 +1032,13 @@ tr:hover { background: rgba(30,42,58,0.6); }
 <div class="toast" id="toast"></div>
 
 <script>
-const API = window.location.origin;
+// If opened as file://, redirect to the proper http:// URL so fetch works.
+if (window.location.protocol === 'file:') {
+    window.location.replace('http://localhost:8000/static/dashboard.html');
+}
+const API = window.location.protocol === 'file:'
+    ? 'http://localhost:8000'
+    : window.location.origin;
 
 // ---------- Tab Navigation ----------
 document.querySelectorAll('.nav-item').forEach(el => {

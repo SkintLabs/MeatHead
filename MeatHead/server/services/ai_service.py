@@ -53,22 +53,84 @@ BANNED_PATTERNS = [
     (r"\bHope this helps\b", "'Hope this helps'"),
     (r"\bLet me explain\b", "'Let me explain'"),
     (r"\bGreat question\b", "'Great question'"),
-    # CTA closers the knowledge base explicitly forbids
+    # AI buzzwords used in the wrong place
+    (r"\bgame[- ]?changer\b", "'game-changer'"),
+    (r"\bAI[- ]powered\b", "'AI-powered' buzzword"),
+    (r"\bsimplifies the process of\b", "'simplifies the process of'"),
+    (r"\bunique solution\b", "'unique solution'"),
+    (r"\bexciting development\b", "'exciting development'"),
+    # Generic three-act opener cliches
+    (r"\b(always |has |have |had )?kept me up at night\b", "cliche 'kept me up at night'"),
+    (r"\bfor (years|ages|so long)\b.*\b(been|always)\b", "career-summary opener"),
+    # CTA closers
     (r"\bCheck (it|them|this) out\b", "CTA 'Check it out'"),
     (r"\bLearn more\b", "CTA 'Learn more'"),
-    (r"\bLet me know your thoughts\b", "CTA 'Let me know your thoughts'"),
-    (r"I('m| am) (excited|thrilled|pleased|happy) to (share|announce)", "excited-to-share opener"),
-    # Third-person narration about yourself or your products
+    (r"\bLet me know (your thoughts|what you think|how you go|if)\b", "CTA 'Let me know'"),
+    (r"\btake a look (at|and)\b", "CTA 'take a look'"),
+    (r"\blooking forward to (hearing|your|getting|any)\b", "CTA 'looking forward to'"),
+    (r"\bwould love to hear\b", "CTA 'would love to hear'"),
+    (r"\bfeel free to\b", "CTA 'feel free to'"),
+    (r"\bdon't hesitate\b", "CTA 'don't hesitate'"),
+    (r"\breach out\b", "CTA 'reach out'"),
+    # Announcement openers
+    (r"I('m| am) (excited|thrilled|pleased|happy) to (share|announce|make|introduce)", "excited-to-share opener"),
+    (r"\b(Today|This week|This month) (we('re| are)|I('m| am)) (launching|releasing|announcing|sharing)", "announcement opener"),
+    (r"\bit'?s a big (milestone|moment|day)\b", "milestone announcement"),
+    # Distancing / third-person narration
     (r"\bAs a developer,\b", "distancing phrase 'As a developer,'"),
+    (r"\bevery developer I (spoke|speak|talked|talk) to\b", "distancing generalisation"),
+    (r"\bwar stories\b", "cliche 'war stories'"),
+    # Vague soft openers that say nothing
+    (r"^I've been (building|working on|developing) [A-Za-z\- ]+ for (years|ages|a long time)", "vague career opener"),
 ]
+
+# Few-shot exemplars: pull the most relevant good post into the user prompt
+# directly so the model anchors on it. Pair = (platform, product_keyword) -> example.
+EXEMPLARS = {
+    ("facebook", "wonderwallai"): (
+        "Put WonderwallAi on Product Hunt this week. It's a Python SDK that blocks "
+        "prompt injection before it reaches your LLM. Four layers: semantic router catches "
+        "90% of off-topic abuse with no API call, then a binary classifier for the sophisticated "
+        "stuff, then output scanning for leaked API keys and PII. Runs locally, nothing goes to "
+        "a third-party. pip install wonderwallai, MIT licensed, free SDK."
+    ),
+    ("facebook", "jerry"): (
+        "Most Shopify support tickets are the same five questions. Where's my order. "
+        "What's the return window. Do you have this in medium. Jerry handles those in 8 languages, "
+        "connected to live Shopify order data, voice input included with no extra cost or external API. "
+        "$49 a month, no revenue share, installs in five minutes."
+    ),
+    ("reddit", "wonderwallai"): (
+        "The model is treating user input as an instruction because there's no boundary between "
+        "your system prompt and what the user sends. That's prompt injection. Layer 1 fix is "
+        "explicit delimiters and input sanitisation before the call. If you want a drop-in, I built "
+        "wonderwallai for this exact problem. Semantic router catches 90% of it before any LLM is "
+        "involved. Free SDK, pip installable."
+    ),
+}
+
+
+def _pick_exemplar(platform: str, product: str, topic: str) -> str | None:
+    """Find the closest matching good-post example to anchor the model on."""
+    p = (platform or "").lower()
+    haystack = f"{product} {topic}".lower()
+    if "wonderwall" in haystack:
+        return EXEMPLARS.get((p, "wonderwallai"))
+    if "jerry" in haystack:
+        return EXEMPLARS.get((p, "jerry"))
+    return None
 
 # Topic keywords -> specific writing guidance pulled from knowledge.md
 TOPIC_GUIDANCE = {
     "product hunt": (
-        "This is a Product Hunt launch post. Do NOT pitch the product. "
-        "Tell the story of why you built it. You were a developer rolling your own guardrails, "
-        "you got tired of it, you built the tool. Mention the launch as the reason you're posting, "
-        "not the substance. Write in first person as the founder."
+        "This is a Product Hunt launch post. Rules: "
+        "Do NOT open with 'Today we're launching' or any announcement framing. "
+        "Do NOT end with 'looking forward to your thoughts', 'let me know what you think', or any CTA. "
+        "Do NOT pitch or describe the product's features. "
+        "DO tell the story of why you built it in plain first person. "
+        "The structure is: specific frustrating moment you hit as a developer, "
+        "what you tried that didn't work, what you built instead, one sentence on where it is now. "
+        "The launch is the context, not the story. Under 120 words. "
     ),
     "competitor": (
         "You're comparing your tool to a competitor. Be specific and fair. "
@@ -181,8 +243,12 @@ class MeatHeadEngine:
             )
         elif platform == "facebook":
             base += (
-                "\nFACEBOOK: Engaging and shareable, still authentic. "
-                "Slightly more polished than Reddit. No hard sell. Under 300 words.\n"
+                "\nFACEBOOK: Write like a real person posting an update, not a brand announcement. "
+                "The audience is a mix of friends, followers, and people who know you or follow Skint Labs. "
+                "Lead with something real and human, a moment, a frustration, a decision, not a headline. "
+                "If it's a launch post, the launch is one sentence near the end, not the opener. "
+                "No 'We are thrilled', no 'I am excited to announce', no hashtag spam. "
+                "One or two short paragraphs. Conversational. Under 150 words.\n"
             )
         elif platform == "email":
             base += (
@@ -209,10 +275,10 @@ class MeatHeadEngine:
     def _build_content_prompt(self, platform: str, product: str, topic: str, tone: str) -> str:
         """
         Build a scenario-grounded user prompt for generate_content.
-        This is intentionally different from the generic 'Draft a reply' prompt
-        used in generate_reply — it anchors the model in first-person and scenario.
+        Anchors the model with a few-shot exemplar of a known-good post.
         """
         guidance = _topic_guidance(topic)
+        exemplar = _pick_exemplar(platform, product, topic)
 
         lines = [
             f"Write a {platform} post. You're the founder. First person throughout.",
@@ -221,6 +287,14 @@ class MeatHeadEngine:
             f"Tone: {tone}",
         ]
 
+        if exemplar:
+            lines.append(
+                "\nHere's an example of a GOOD post in this exact voice and platform. "
+                "Match its structure, density, and tone. Do not copy it verbatim, "
+                "write a fresh post on your topic that feels the same:\n"
+                f"\"\"\"\n{exemplar}\n\"\"\""
+            )
+
         if guidance:
             lines.append(f"\nSpecific guidance for this topic:\n{guidance}")
 
@@ -228,7 +302,8 @@ class MeatHeadEngine:
             lines.append("\nPut the subject line on the first line, then a blank line, then the body.")
 
         lines.append(
-            "\nWrite it now. Don't explain what you're about to write. Just write it."
+            "\nWrite it now. Don't explain what you're about to write. Just write it. "
+            "Lead with a specific fact or moment, never a career-summary opener."
         )
 
         return "\n".join(lines)
@@ -343,31 +418,53 @@ class MeatHeadEngine:
         return {"title": title, "body": body, "raw_body": raw_body}
 
     async def improve_draft(self, text: str, instruction: str) -> str:
-        """Apply a specific editing instruction to existing text."""
+        """Apply a specific editing instruction. Uses knowledge + validation."""
         if not self.configured or not self.client:
             raise RuntimeError("MeatHeadEngine not configured")
 
+        knowledge = self._get_knowledge()
+        system = (
+            "You are the founder editing your own post. First person throughout. "
+            "Apply the user's instruction precisely while keeping concrete facts intact. "
+            "Replace vague phrases with specifics from the knowledge base.\n\n"
+            "HARD RULES (rejection means you rewrite):\n"
+            "- No em-dashes, no bullet points, no numbered lists.\n"
+            "- No CTA closers ('Check it out', 'Learn more', 'Let me know what you think', "
+            "'looking forward to', 'feel free to').\n"
+            "- No 'I'm excited to', 'thrilled to', 'game-changer', 'kept me up at night', "
+            "'AI-powered', 'unique solution', 'simplifies the process of'.\n"
+            "- No closing summary recap.\n"
+            "- Return only the improved text, no preamble.\n\n"
+        )
+        if knowledge:
+            system += f"--- KNOWLEDGE BASE ---\n{knowledge}\n--- END KNOWLEDGE BASE ---"
+
         messages = [
-            {
-                "role": "system",
-                "content": (
-                    "You are a pragmatic editor. Apply the user's instruction to the text exactly. "
-                    "Do not use em-dashes. Do not add bullet points or numbered lists. "
-                    "Return only the improved text, nothing else."
-                ),
-            },
-            {"role": "user", "content": f"Text:\n{text}\n\nInstruction: {instruction}"},
+            {"role": "system", "content": system},
+            {"role": "user", "content": f"Current draft:\n{text}\n\nInstruction: {instruction}"},
         ]
 
-        response = await self.client.chat.completions.create(
-            model=self.model,
-            messages=messages,
-            temperature=0.5,
-            max_tokens=400,
-        )
+        improved = ""
+        for attempt in range(3):
+            response = await self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=0.6,
+                max_tokens=500,
+            )
+            improved = response.choices[0].message.content.strip()
+            is_valid, reason = self._validate_output(improved)
+            if is_valid:
+                break
+            logger.warning(f"improve_draft validation failed (attempt {attempt + 1}): {reason}")
+            messages.append({"role": "assistant", "content": improved})
+            messages.append({
+                "role": "user",
+                "content": f"Rejected: {reason}. Rewrite fixing exactly that, no apology, no preamble.",
+            })
+        else:
+            improved = improved.replace("—", ",").replace("--", ",")
 
-        improved = response.choices[0].message.content.strip()
-        improved = improved.replace("—", ",").replace("--", ",")
         return apply_human_entropy(improved)
 
     # --- Legacy method for GiLLBoT email sequences (backward compat) ---

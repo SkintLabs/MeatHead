@@ -34,8 +34,8 @@ GitHub: SkintLabs
 All products deployed on Railway. All pricing in USD.
 
 Products released:
-WonderwallAi — live and on sale. Launched on Product Hunt on 1 May 2026. Currently in Product Hunt launch week with a 75% off forever deal using code PRODUCTHUNT.
-Jerry — live and on sale. Shopify App Store listing in progress.
+WonderwallAi: live and on sale. Launched on Product Hunt on 1 May 2026. Currently in Product Hunt launch week with a 75% off forever deal using code PRODUCTHUNT.
+Jerry: live and on sale. Shopify App Store listing in progress.
 
 The brand has a deliberate scrappiness to it. The jar mascot logo has a duct-tape robot
 head and mechanical arms. The visual palette across all properties runs dark, warm, and
@@ -43,7 +43,7 @@ slightly worn. Not the sterile blue-white of big tech. Built by hand, looks like
 
 ---
 
-## WonderwallAi — the real details
+## WonderwallAi: the real details
 
 Tagline: Stop Prompt Injection.
 
@@ -94,7 +94,7 @@ The OWASP LLM Top 10 categories it covers: prompt injection, sensitive info disc
 
 ---
 
-## Jerry — the real details
+## Jerry: the real details
 
 Tagline: The AI assistant that knows every product in your Shopify store, tracks every order, handles returns, speaks 8 languages, and never takes a day off.
 

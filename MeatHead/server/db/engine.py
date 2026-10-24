@@ -100,14 +100,6 @@ async def create_tables() -> None:
                     await conn.execute(text(stmt))
             except Exception as e:
                 logger.info(f"Schema upgrade skipped ({stmt[:60]}): {e}")
-    if engine.dialect.name == "postgresql":
-        from sqlalchemy import text
-        for stmt in _SCHEMA_UPGRADES:
-            try:
-                async with engine.begin() as conn:
-                    await conn.execute(text(stmt))
-            except Exception as e:
-                logger.info(f"Schema upgrade skipped ({stmt[:60]}): {e}")
     logger.info(f"Database tables created/verified (url={DATABASE_URL.split('://')[0]})")
 
 

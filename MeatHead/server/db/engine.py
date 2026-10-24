@@ -77,10 +77,37 @@ async_session_factory = async_sessionmaker(
 # Public API
 # ---------------------------------------------------------------------------
 
+_SCHEMA_UPGRADES = [
+    "ALTER TABLE campaign_leads ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ DEFAULT now()",
+    "ALTER TABLE content_drafts ADD COLUMN IF NOT EXISTS product_context TEXT",
+    "ALTER TABLE content_drafts ADD COLUMN IF NOT EXISTS topic TEXT",
+    "ALTER TABLE content_drafts ADD COLUMN IF NOT EXISTS tone VARCHAR(64)",
+    "ALTER TABLE sequence_executions ADD COLUMN IF NOT EXISTS error TEXT",
+    "ALTER TABLE sequence_executions ALTER COLUMN channel DROP NOT NULL",
+    "ALTER TABLE sequence_executions ALTER COLUMN generated_body DROP NOT NULL",
+]
+
+
 async def create_tables() -> None:
     """Create all tables if they don't exist. Called once at startup."""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+    if engine.dialect.name == "postgresql":
+        from sqlalchemy import text
+        for stmt in _SCHEMA_UPGRADES:
+            try:
+                async with engine.begin() as conn:
+                    await conn.execute(text(stmt))
+            except Exception as e:
+                logger.info(f"Schema upgrade skipped ({stmt[:60]}): {e}")
+    if engine.dialect.name == "postgresql":
+        from sqlalchemy import text
+        for stmt in _SCHEMA_UPGRADES:
+            try:
+                async with engine.begin() as conn:
+                    await conn.execute(text(stmt))
+            except Exception as e:
+                logger.info(f"Schema upgrade skipped ({stmt[:60]}): {e}")
     logger.info(f"Database tables created/verified (url={DATABASE_URL.split('://')[0]})")
 
 

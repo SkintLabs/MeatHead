@@ -143,10 +143,10 @@ class MeatHeadEngine:
                 model=self.model,
                 messages=messages,
                 temperature=0.7,
-                max_tokens=400,
+                max_tokens=2000, extra_body={"reasoning_effort": "low"},
             )
 
-            draft = response.choices[0].message.content.strip()
+            draft = (response.choices[0].message.content or "").strip()
 
             is_valid, reason = self._validate_output(draft)
             if is_valid:
@@ -218,10 +218,10 @@ class MeatHeadEngine:
             model=self.model,
             messages=messages,
             temperature=0.5,
-            max_tokens=400,
+            max_tokens=2000, extra_body={"reasoning_effort": "low"},
         )
 
-        improved = response.choices[0].message.content.strip()
+        improved = (response.choices[0].message.content or "").strip()
         improved = improved.replace("\u2014", ",").replace("--", ",")
         return apply_human_entropy(improved)
 

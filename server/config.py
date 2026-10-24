@@ -49,7 +49,7 @@ class Settings(BaseSettings):
 
     # --- AI / LLM ---
     groq_api_key: str = Field(default="", alias="GROQ_API_KEY")
-    groq_model: str = Field(default="llama-3.3-70b-versatile", alias="GROQ_MODEL")
+    groq_model: str = Field(default="openai/gpt-oss-120b", alias="GROQ_MODEL")
 
     # --- Email (SendGrid) ---
     sendgrid_api_key: str = Field(default="", alias="SENDGRID_API_KEY")
